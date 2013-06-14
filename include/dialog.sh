@@ -5,7 +5,7 @@
 dialog_selectapp_null(){
   exec 3>&1
 
-  app_prog=$(${script_path}/dialog --backtitle "value input" --title "value" \
+  app_prog=$(${script_path}/src/dialog --backtitle "value input" --title "value" \
    --menu "menu" 20 60 10 \
     "proftpdmysql" "install proftpd with mysql" \
     "proftpd" "install proftpd" \
@@ -30,7 +30,7 @@ dialog_selectapp_null(){
 dialog_selectfile_installpkg(){
   exec 3>&1
 
-  app_installpkg=$(${script_path}/dialog --backtitle "value input" --title "value" \
+  app_installpkg=$(${script_path}/src/dialog --backtitle "value input" --title "value" \
    --fselect "/root" 20 60 \
   2>&1 1>&3)
 
@@ -56,7 +56,7 @@ dialog_selectfile_installpkg(){
 
 dialog_msgbox_info(){
   # $0 $1(msg) $2(callback function)
-  ${script_path}/dialog --backtitle "value input" --title "value" --msgbox "$1" 20 60
+  ${script_path}/src/dialog --backtitle "value input" --title "value" --msgbox "$1" 20 60
   local result=$?
   case ${result} in
     0)
