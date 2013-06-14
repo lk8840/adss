@@ -5,7 +5,7 @@
 dialog_selectapp_null(){
   exec 3>&1
 
-  app_prog=$(${script_path}/src/dialog --backtitle "value input" --title "value" \
+  app_prog=$(${script_path}/src/dialog --backtitle "Select install app" --title "Apps" \
    --menu "menu" 20 60 10 \
     "proftpdmysql" "install proftpd with mysql" \
     "proftpd" "install proftpd" \
@@ -30,8 +30,8 @@ dialog_selectapp_null(){
 dialog_selectfile_installpkg(){
   exec 3>&1
 
-  app_installpkg=$(${script_path}/src/dialog --backtitle "value input" --title "value" \
-   --fselect "/root" 20 60 \
+  app_installpkg=$(${script_path}/src/dialog --backtitle "Input install package path" --title "Input path" \
+   --fselect "/" 20 60 \
   2>&1 1>&3)
 
   result=$?
