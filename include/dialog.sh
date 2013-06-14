@@ -11,7 +11,7 @@ dialog_selectapp_null(){
     "proftpd" "install proftpd" \
   2>&1 1>&3)
 
-  result=$?
+  local result=$?
   exec 3>&-
 
   case ${result} in
@@ -30,17 +30,18 @@ dialog_selectapp_null(){
 dialog_selectfile_installpkg(){
   exec 3>&1
 
-  app_installpkg=$(${script_path}/src/dialog --backtitle "Input install package path" --title "Input path" \
+  app_installpkg=$(readlink -f "$(${script_path}/src/dialog --backtitle "Input install package path" --title "Input path" \
    --fselect "/" 20 60 \
-  2>&1 1>&3)
+  2>&1 1>&3)")
 
-  result=$?
+  local result=$?
   exec 3>&-
 
   case ${result} in
     0)
       if [ -f "${app_installpkg}" ]; then
-        echo ${app_installpkg}
+        general_checkpkgsupport_null $(basename "${app_installpkg}")
+        echo ${default_installopt}
       else
         dialog_msgbox_info "${app_installpkg} not exist, please select correct install package!" "dialog_selectfile_installpkg"
       fi

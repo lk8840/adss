@@ -14,7 +14,7 @@ proftpdmysql_varinit_null(){
   libdir="${prefix}/lib"
   includedir="${prefix}/include"
   sharedir="${prefix}/share"
-  installopt="--with-modules=mod_sql:mod_sql_mysql:mod_quotatab:mod_quotatab_sql --with-libraries=/usr/lib64/mysql --with-includes=/usr/include/mysql"
+  installopt=""
 
   conf_file=""
   sql_file=""
