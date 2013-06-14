@@ -65,4 +65,5 @@ dialog_msgbox_info(){
     255)
       exit 1
       ;;
+  esac
 }
