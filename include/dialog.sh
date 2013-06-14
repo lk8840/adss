@@ -41,7 +41,6 @@ dialog_selectfile_installpkg(){
     0)
       if [ -f "${app_installpkg}" ]; then
         general_checkpkgsupport_null $(basename "${app_installpkg}")
-        echo ${default_installopt}
       else
         dialog_msgbox_info "${app_installpkg} not exist, please select correct install package!" "dialog_selectfile_installpkg"
       fi
