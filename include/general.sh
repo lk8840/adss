@@ -22,13 +22,11 @@ general_modifyfile_iptables(){
 }
 
 general_checkpkgexist_null(){
-  for pkgargs in $@; do
-    for element in $(ls ${installpkgdir} 2>/dev/null | grep ${pkgargs}); do
-      if [ -d ${installpkgdir}/${element} ]; then
-        rm -rf ${installpkgdir}/${element}
-      fi
-    done
-    if [ $(ls ${installpkgdir}/${pkgargs}-* 2>/dev/null | grep -c "$(basename $(readlink -f ${installpkgdir}/${pkgargs}-*) 2>/dev/null)") -eq 0 ]; then
+
+  # Function need input full path of package
+
+  for args in $@; do
+    if [ ! -f ${args} ]; then
       echo "There's no install package ${args}"
       exit 1
     fi
