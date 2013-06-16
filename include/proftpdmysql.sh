@@ -14,7 +14,7 @@ proftpdmysql_varinit_null(){
   libdir="${prefix}/lib"
   includedir="${prefix}/include"
   sharedir="${prefix}/share"
-  installopt=""
+  compile_opt="${default_compileopt}"
 
   conf_file=""
   sql_file=""
@@ -60,8 +60,8 @@ proftpdmysql_parsearg_null(){
       --sharedir=*)
         sharedir=$(general_parsearg_atom $args)
         ;;
-      --installopt=*)
-        installopt=$(general_parsearg_atom $args)
+      --compile_opt=*)
+        compile_opt=$(general_parsearg_atom $args)
         ;;
       --conf_file=*)
         conf_file=$(general_parsearg_atom $args)
@@ -105,7 +105,7 @@ proftpdmysql_compile_prog(){
 	cd ${installpkg_filefolder}
   tar xvf ${installpkg_filename}
   cd ${installpkg_filename%.*.*}
-  ./configure --prefix=${prefix} --bindir=${bindir} --sbindir=${sbindir} --libexecdir=${libexecdir} --sysconfdir=${sysconfdir} --libdir=${libdir} --includedir=${includedir} --datarootdir=${sharedir} ${installopt}
+  ./configure --prefix=${prefix} --bindir=${bindir} --sbindir=${sbindir} --libexecdir=${libexecdir} --sysconfdir=${sysconfdir} --libdir=${libdir} --includedir=${includedir} --datarootdir=${sharedir} ${compile_opt}
   make -j ${cpu_processor} && make install
   cd ${installpkg_filefolder}
   rm -rf ${installpkg_filefolder}/${installpkg_filename%.*.*}

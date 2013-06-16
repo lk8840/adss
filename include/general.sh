@@ -49,7 +49,7 @@ general_checktoolexist_null(){
 }
 
 general_checkpkgsupport_null(){
-  default_installopt=$(cat ${script_path}/src/supportpkglist.conf | grep "$1" | sed "s/.*|//")
+  default_compileopt=$(cat ${script_path}/src/supportpkglist.conf | grep "$1" | sed "s/.*|//")
   if [ -z "${default_installopt}" ]; then
     echo "$1 is not supported by adss"
     exit 1
