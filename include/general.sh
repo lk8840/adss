@@ -4,7 +4,7 @@ general_parsearg_atom(){
 
   # Function will parse the args
 
-  sourcearg=$(echo "$1" | sed -e 's/^[^=]*=//')
+  local sourcearg=$(echo "$1" | sed -e 's/^[^=]*=//')
   if [ $(echo ${sourcearg:0-1}) = "/" ]; then
     echo ${sourcearg} | sed "s/\(.*\)\//\1/"
   else
@@ -17,8 +17,8 @@ general_modifyfile_iptables(){
   # Function need initial ${append_str} before call itself
   # Function will appendnew rule to system iptables config file
 
-  append_mark="^:OUTPUT ACCEPT \[0:0\]"
-  sed -i "$(grep -n "${append_mark}" ${iptables_conf} | head -1 | cut -d ":" -f 1)a${append_str}" ${iptables_conf}
+  local append_marker="^:OUTPUT ACCEPT \[0:0\]"
+  sed -i "$(grep -n "${append_marker}" ${iptables_conf} | head -1 | cut -d ":" -f 1)a${append_str}" ${iptables_conf}
 }
 
 general_checkpkgexist_null(){
@@ -49,9 +49,21 @@ general_checktoolexist_null(){
 }
 
 general_checkpkgsupport_null(){
-  default_compileopt=$(cat ${script_path}/src/supportpkglist.conf | grep "$1" | sed "s/.*|//")
+  local default_compileopt=$(cat ${script_path}/src/supportpkglist.conf | grep "$1" | sed "s/.*|//")
   if [ -z "${default_installopt}" ]; then
     echo "$1 is not supported by adss"
     exit 1
   fi
+}
+
+general_fetchvalue_configfile(){
+  # Call method
+  # general_fetchvalue_configfile filepath item
+  #
+  # config file example
+  # item(|)content
+
+  returnvalue=`grep "^${2}" ${1} | sed "s/^${2}(|)\(.*\)$/\1/g"`
+  
+  echo ${returnvalue}
 }

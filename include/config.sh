@@ -8,7 +8,7 @@ config_systemenv_null(){
   ip_addr=`/sbin/ifconfig|sed -n '/inet addr/s/^[^:]*:\([0-9.]\{7,15\}\) .*/\1/p' | head -n1`
   iptables_conf="/etc/sysconfig/iptables"
   os_startup_conf_file="/etc/rc.local"
-
+  dialogpath="${script_path}/src/dialog"
 }
 
 config_varinit_null(){
