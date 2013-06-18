@@ -13,3 +13,30 @@ script_path=$(dirname $(readlink -f "$0"))
 
 dialog_selectapp_null
 
+install_proftpdmysql(){
+  proftpdmysql_varinit_null
+  dialog_installparam_proftpdmysql
+  proftpdmysql_parsearg_null
+  proftpdmysql_precompile_prog
+  proftpdmysql_compile_prog
+  proftpdmysql_setenv_null
+  proftpdmysql_modifyfile_configfile
+  proftpdmysql_import_mysql
+  proftpdmysql_createfile_controlscript
+  proftpdmysql_install_verify
+}
+
+install_dispatch_null(){
+  case $1 in
+    proftpd)
+      install_proftpd
+      ;;
+    proftpdmysql)
+      install_proftpdmysql
+      ;;
+    *)
+      echo "Dialog dispatch error"
+      exit 1
+      ;;
+  esac
+}

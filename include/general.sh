@@ -67,3 +67,4 @@ general_fetchvalue_configfile(){
   
   echo ${returnvalue}
 }
+
