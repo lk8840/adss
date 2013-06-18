@@ -87,7 +87,7 @@ dialog_installparam_proftpdmysql(){
     "mysqlport: " 6 1 "${mysqlport}" 6 15 15 255 \
     "mysqlacc: " 7 1 "${mysqlacc}" 7 15 15 255 \
     "mysqlpsw: " 8 1 "${mysqlpsw}" 8 15 15 255 \
-    "mysqldb: " 9 1 "${mysqldb)" 9 15 15 255 \
+    "mysqldb: " 9 1 "${mysqldb}" 9 15 15 255 \
   2>&1 1>&3)
 
   local result=$?
