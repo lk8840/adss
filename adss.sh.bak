@@ -11,5 +11,6 @@ script_path=$(dirname $(readlink -f "$0"))
 # config initial
 config_userdefined_null
 config_systemenv_null
-config_vision_null
+
+
 
